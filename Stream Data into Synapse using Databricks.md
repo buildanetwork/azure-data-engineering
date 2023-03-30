@@ -60,4 +60,6 @@ We will need the send policy for the python script that will send data to the ev
 
 ![Get connection string from event hub](https://user-images.githubusercontent.com/50084105/228879400-dfe8a725-3f93-484c-8bba-2383ac2fea31.png)
 
+2. Synapse Analytics: Go to your Synapse Analytics and follow this path to get your connection string `SQL Pools > Select the SQL Pool you created > Connection Strings > JDBC Tab > SQL Authentication`. It will look similar to this:
+`jdbc:sqlserver://{workspacename}.sql.azuresynapse.net:1433;database={dbname};user={userid};password={your_password_here};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.sql.azuresynapse.net;loginTimeout=30;`
 
