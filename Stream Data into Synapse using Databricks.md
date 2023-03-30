@@ -214,10 +214,10 @@ final_df.writeStream \
 
 ![image](https://user-images.githubusercontent.com/50084105/228904362-de7467bf-58ba-4120-8626-791b5109c106.png)
 
-2. Run the script that streams the coincap data to the eventhub. After running the script on 2023-03-30 12:28 UTC
+2. Run the script that streams the coincap data to the eventhub. The data for this run was created at 2023-03-30 12:28 UTC.
 
 ![Screenshot (15)](https://user-images.githubusercontent.com/50084105/228902098-5879ec38-26f9-4c9f-877f-c5aaf174c691.png)
 
-3. After a few minutes the data will be populated in Synapse. You can verify this with the runtime column for the latest entries.
+3. After a few minutes the data will be inserted in the Synapse destination table. You can verify this with the runtime column for the latest entries.
 
 ![Entries](https://user-images.githubusercontent.com/50084105/228902978-4997e717-4ea4-4dab-86ef-ca5bcd3673b3.png)
