@@ -103,9 +103,6 @@ def get_coin_prices(coin_list):
         for rate in rates_response["data"]:
             rate["timestamp"] = runtime_ts
             coin_rates.append(rate)  
-            print(rate)
-            break
-        break
     return coin_rates   
 
 def get_asset_data():
@@ -120,14 +117,14 @@ def get_asset_data():
     return coins
 
 coin_list = get_asset_data()
-coin_rates_list = get_coin_prices(coin_list[0:2])
+coin_rates_list = get_coin_prices(coin_list)
 json_object = json.dumps(coin_rates_list, indent=4)
 
 storage_account_name = "<name>"
 storage_account_key = "<key>"
 container_name = "<container name>"
 directory_name = "<directory>"
-connect_str = 'DefaultEndpointsProtocol=https;AccountName=<storage account>;AccountKey=,<account key from earlier steps>EndpointSuffix=core.windows.net'
+connect_str = 'DefaultEndpointsProtocol=https;AccountName=<storage account>;AccountKey=<account key from earlier steps>EndpointSuffix=core.windows.net'
 
 blob_service_client = BlobServiceClient.from_connection_string(connect_str)
 container_client = blob_service_client.get_container_client(container_name)
