@@ -29,26 +29,28 @@ Azure Key Vault is a service provided by Azure that securely stores secrets (pri
 
 Run the code below on Azure Synapse Studio, this will create the destination table that will store the data collected and processed from the coincap API.
 
-```	CREATE TABLE assets.asset_statistics_history_v3
-	(
-		[id_asset_statistics_history] bigint IDENTITY(1,1), --Automatically increases the value for this field for every row insert
-		[id] varchar(255),
-		[asset_rank] bigint,
-		[symbol] varchar(255),
-		[asset_name] varchar(255),
-		[supply] float,
-		[maxSupply] float,
-		[marketCapUsd] float,
-		[volumeUsd24Hr] float,
-		[priceUsd] float,
-		[changePercent24Hr] float,
-		[vwap24Hr] float,
-		[explorer] varchar(255),
-		[runtime_timestamp] datetime
-	)
-	WITH
-	(
-		DISTRIBUTION = ROUND_ROBIN,
-		HEAP
-	);```
+```	
+CREATE TABLE assets.asset_statistics_history_v3
+(
+    [id_asset_statistics_history] bigint IDENTITY(1,1), --Automatically increases the value for this field for every row insert
+    [id] varchar(255),
+    [asset_rank] bigint,
+    [symbol] varchar(255),
+    [asset_name] varchar(255),
+    [supply] float,
+    [maxSupply] float,
+    [marketCapUsd] float,
+    [volumeUsd24Hr] float,
+    [priceUsd] float,
+    [changePercent24Hr] float,
+    [vwap24Hr] float,
+    [explorer] varchar(255),
+    [runtime_timestamp] datetime
+)
+WITH
+(
+    DISTRIBUTION = ROUND_ROBIN,
+    HEAP
+);
+```
 
