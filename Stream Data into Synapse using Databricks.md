@@ -25,7 +25,7 @@ You also need a Synapse Analytics workspace and a dedicated SQL pool to serve as
 
 Azure Key Vault is a service provided by Azure that securely stores secrets (private strings like passwords, connection strings etc) and keys. I have used this service in my pipeline, if you do not want to use Key Vault you can simply use the respective secrets directly as strings in databricks. This is link to help setup your [Key Vault](https://medium.com/swlh/a-credential-safe-way-to-connect-and-access-azure-synapse-analytics-in-azure-databricks-1b008839590a). 
 
-### 2. Create a destination table (sink) in the Synapse Dedicated SQL Pool
+### 2. Create the destination table (sink) in the Synapse Dedicated SQL Pool
 
 Run the SQL code below on Azure Synapse Studio, this will create the destination table that will store the data collected and processed from the coincap API.
 
@@ -53,4 +53,11 @@ WITH
     HEAP
 );
 ```
+### 3. Get the connection strings for your services
+
+1. Event Hub: To get the connection string for your event hub entity follow this path `Event Hubs > Event Hub Namespace (What you just created) > Event Hubs (Under Entities) > Event Hub (Entity you created) > Shared access policies`. Click Add, create a name and select Listen. You will need to create another policy for sending data to the event hub, you can use the screenshot below as reference to find your connection string for the respective policy.
+We will need the send policy for the python script that will send data to the event hub and the listen policy to read data from databricks
+
+![image](https://user-images.githubusercontent.com/50084105/228878061-116bd708-6155-4a2f-8c20-7d93f68bd4d7.png)
+
 
