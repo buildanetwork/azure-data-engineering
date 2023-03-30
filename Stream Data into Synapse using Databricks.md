@@ -58,6 +58,6 @@ WITH
 1. Event Hub: To get the connection string for your event hub entity follow this path `Event Hubs > Event Hub Namespace (What you just created) > Event Hubs (Under Entities) > Event Hub (Entity you created) > Shared access policies`. Click Add, create a name and select Listen. You will need to create another policy for sending data to the event hub, you can use the screenshot below as reference to find your connection string for the respective policy.
 We will need the send policy for the python script that will send data to the event hub and the listen policy to read data from databricks
 
-![image](https://user-images.githubusercontent.com/50084105/228878061-116bd708-6155-4a2f-8c20-7d93f68bd4d7.png)
+![Get connection string from event hub](https://user-images.githubusercontent.com/50084105/228878208-1a83afea-deba-4f06-a520-32376d418a9a.png)
 
 
