@@ -35,7 +35,7 @@ Azure Key Vault is a service provided by Azure that securely stores secrets (pri
 Run the SQL code below on Azure Synapse Studio, this will create the destination table that will store the data collected and processed from the coincap API.
 
 ```	
-CREATE TABLE assets.asset_statistics_history_v3
+CREATE TABLE [schema].[table name]
 (
     [id_asset_statistics_history] bigint IDENTITY(1,1), --Automatically increases the value for this field for every row insert
     [id] varchar(255),
@@ -146,6 +146,7 @@ This script should generate the output below
 ## Using Databricks to Stream Data from the Event Hub
 
 Create a notebook in the Databricks workspace you created. You will need to install a library on the cluster to read data from the Event Hub, you can use the Maven coordinate `com.microsoft.azure:azure-eventhubs-spark_2.12:2.3.18` to do this. You can find a guide online to configure this library if you have issues.
+Note: This script uses Azure Key Vault, you can use the connection string directly. If you want to use this service you can use this [guide](https://medium.com/swlh/a-credential-safe-way-to-connect-and-access-azure-synapse-analytics-in-azure-databricks-1b008839590a) to implement this in Databricks.
 
 ```
 from pyspark.sql.types import *
@@ -207,3 +208,16 @@ final_df.writeStream \
       .option("checkpointLocation", "/tmp_checkpoint_location") \
       .start()
 ```
+## Running the scripts
+
+1. Run the code in the Databricks Cluster. You should see the below output when you don't have any errors.
+
+![image](https://user-images.githubusercontent.com/50084105/228904362-de7467bf-58ba-4120-8626-791b5109c106.png)
+
+2. Run the script that streams the coincap data to the eventhub. After running the script on 2023-03-30 12:28 UTC
+
+![Screenshot (15)](https://user-images.githubusercontent.com/50084105/228902098-5879ec38-26f9-4c9f-877f-c5aaf174c691.png)
+
+3. After a few minutes the data will be populated in Synapse. You can verify this with the runtime column for the latest entries.
+
+![Entries](https://user-images.githubusercontent.com/50084105/228902978-4997e717-4ea4-4dab-86ef-ca5bcd3673b3.png)
