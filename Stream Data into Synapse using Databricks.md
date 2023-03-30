@@ -56,9 +56,11 @@ WITH
 ### 3. Get the connection strings for your services
 
 1. Event Hub: To get the connection string for your event hub entity follow this path `Event Hubs > Event Hub Namespace (What you just created) > Event Hubs (Under Entities) > Event Hub (Entity you created) > Shared access policies`. Click Add, create a name and select Listen. You will need to create another policy for sending data to the event hub, you can use the screenshot below as reference to find your connection string for the respective policy.
-We will need the send policy for the python script that will send data to the event hub and the listen policy to read data from databricks
+We will need the send policy for the python script that will send data to the event hub and the listen policy to read data from databricks. 
 
 ![Get connection string from event hub](https://user-images.githubusercontent.com/50084105/228879400-dfe8a725-3f93-484c-8bba-2383ac2fea31.png)
+
+These strings will look like this: `"Endpoint=sb://<namespace>.servicebus.windows.net/;SharedAccessKeyName=<policy name>;SharedAccessKey=<key>;EntityPath=<entity>"`
 
 2. Synapse Analytics: Go to your Synapse Analytics and follow this path to get your connection string `SQL Pools > (Select the SQL Pool you created) > Connection Strings > JDBC Tab > SQL Authentication`. It will look similar to the string below:
 
