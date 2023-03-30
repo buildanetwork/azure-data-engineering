@@ -25,3 +25,30 @@ You also need a Synapse Analytics workspace and a dedicated SQL pool to serve as
 
 Azure Key Vault is a service provided by Azure that securely stores secrets (private strings like passwords, connection strings etc) and keys. I have used this service in my pipeline, if you do not want to use Key Vault you can simply use the respective secrets directly as strings in databricks. This is link to help setup your [Key Vault](https://medium.com/swlh/a-credential-safe-way-to-connect-and-access-azure-synapse-analytics-in-azure-databricks-1b008839590a). 
 
+### 2. Create a destination table (sink) in the Synapse Dedicated SQL Pool
+
+Run the code below on Azure Synapse Studio, this will create the destination table that will store the data collected and processed from the coincap API.
+
+`	CREATE TABLE assets.asset_statistics_history_v3
+	(
+		[id_asset_statistics_history] bigint IDENTITY(1,1), --Automatically increases the value for this field for every row insert
+		[id] varchar(255),
+		[asset_rank] bigint,
+		[symbol] varchar(255),
+		[asset_name] varchar(255),
+		[supply] float,
+		[maxSupply] float,
+		[marketCapUsd] float,
+		[volumeUsd24Hr] float,
+		[priceUsd] float,
+		[changePercent24Hr] float,
+		[vwap24Hr] float,
+		[explorer] varchar(255),
+		[runtime_timestamp] datetime
+	)
+	WITH
+	(
+		DISTRIBUTION = ROUND_ROBIN,
+		HEAP
+	);`
+
