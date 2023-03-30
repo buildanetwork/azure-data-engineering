@@ -1,4 +1,4 @@
-# Create a streaming data pipeline using Azure Databricks, Event Hub and Synapse
+# Create a streaming data pipeline using Azure Stream Analytics Job, Event Hub and Synapse
 
 
 ## Requirements
