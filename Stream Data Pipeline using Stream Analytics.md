@@ -131,15 +131,52 @@ This script should generate the output below
 
 ## Setting up the Event Hub input for the Stream Analytics Job
 
-Go to the Analytics Stream Job you created earlier. Select `Inputs` and click `Add Input > Event Hub`. Enter a input alias and select the subscription and event hub which will store the streamed data. Use the `$Default` consumer group and use the `Connection String` authentication mode. Use the listening policy that was created earlier and keep the serialization format as `JSON`.
+Go to the Analytics Stream Job. Select `Inputs` and click `Add Input > Event Hub`. Enter a input alias and select the subscription and event hub which will store the streamed data. Use the `$Default` consumer group and use the `Connection String` authentication mode. Select `Use existing` for Event Hub policy name and select listening policy that was created earlier. Keep the serialization format as `JSON`. I have setup the input alias as `cryptodatastream`.
 
 ![image](https://user-images.githubusercontent.com/50084105/228919656-a5da517e-f97b-4d9d-8e7a-83fe8a540384.png)
 
 ## Setting up the Synapse Analytics output for the Stream Analytics Job
 
-Go to the Analytics Stream Job you created earlier. Select `Outputs` and click `Add output > Azure Synapse Analytics`. Enter a output alias and select the subscription and database which will store the processed data. Use the `SQL server authentication` authentication mode and enter your username and password (This was asked during setting up Synapse). Enter the destination table that was created earlier.
+Go to the Analytics Stream Job. Select `Outputs` and click `Add output > Azure Synapse Analytics`. Enter a output alias and select the subscription and database which will store the processed data. Use the `SQL server authentication` authentication mode and enter your username and password (This was asked during setting up Synapse). Enter the destination table that was created earlier. I have setup the output alias as `asset-statistics-history`'
 
 ![Screenshot (20)](https://user-images.githubusercontent.com/50084105/228918646-61cc8552-cf57-452e-83e2-cca0673c63f4.png)
+
+## Setting up the Query for the job
+
+Go to the Analytics Stream Job. Select `Query` and save the query below
+
+```
+SELECT
+    id as [id],
+    cast(rank as bigint) [asset_rank] ,
+	symbol as [symbol] ,
+	name as [asset_name] ,
+	cast(supply as float) [supply] ,
+	cast(maxSupply as float) [maxSupply] ,
+	cast(marketCapUsd as float) [marketCapUsd] ,
+	cast(volumeUsd24Hr as float) [volumeUsd24Hr] ,
+	cast(priceUsd as float) [priceUsd] ,
+	cast(changePercent24Hr as float) [changePercent24Hr] ,
+	cast(vwap24Hr as float) [vwap24Hr] ,
+	explorer as [explorer],
+	cast(udf.todatetime(timestamp) as datetime) [runtime_timestamp]
+INTO
+    [asset-statistics-history]
+FROM
+    [cryptodatastream]
+```
+This query uses a user defined function (UDF) that converts epoch to the ISO 8601 timestamp standard. Click '+' near functions to add a UDF and click `Javascript UDF`. 
+
+![image](https://user-images.githubusercontent.com/50084105/228921383-6a056f36-b20c-4afa-bffa-8c70a5177c2a.png)
+
+Paste this function and give your UDF an alias. I have named mine `todatetime`.
+
+```
+function main(ts) {
+    return new Date(ts).toISOString();
+}
+```
+
 
 ## Running the scripts
 
