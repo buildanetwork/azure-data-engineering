@@ -11,7 +11,7 @@
 
 ### 1.a Create a Event Hub Namespace and Entity
 
-For this project we will be extracting data from the **coincap.io API**. You need to create a unique eventhub namespace, for this project I have created one named **cryptodatastream**. After creating a namespace you can now create an event hub entity, I have created one named **coincaphub**. Setting up these resources is easy you can use this [documentation](https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-create) to help you get started.
+For this project we will be extracting data from the `coincap.io API`. You need to create a unique eventhub namespace, for this project I have created one named `cryptodatastream`. After creating a namespace you can now create an event hub entity, I have created one named `coincaphub`. Setting up these resources is easy you can use this [documentation](https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-create) to help you get started.
 
 ### 1.b Create a Azure Storage account and container. 
 
@@ -29,7 +29,7 @@ Azure Key Vault is a service provided by Azure that securely stores secrets (pri
 
 Run the code below on Azure Synapse Studio, this will create the destination table that will store the data collected and processed from the coincap API.
 
-`	CREATE TABLE assets.asset_statistics_history_v3
+```	CREATE TABLE assets.asset_statistics_history_v3
 	(
 		[id_asset_statistics_history] bigint IDENTITY(1,1), --Automatically increases the value for this field for every row insert
 		[id] varchar(255),
@@ -50,5 +50,5 @@ Run the code below on Azure Synapse Studio, this will create the destination tab
 	(
 		DISTRIBUTION = ROUND_ROBIN,
 		HEAP
-	);`
+	);```
 
