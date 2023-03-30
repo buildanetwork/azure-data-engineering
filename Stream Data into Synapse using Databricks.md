@@ -7,7 +7,8 @@
 2. Azure Event Hub 
 3. Azure Synapse Analytics
 4. Azure Storage Account
-5. Azure Key Vault (Optional)
+5. Azure Databricks
+6. Azure Key Vault (Optional)
 
 ### 1. Create a Event Hub Namespace and Entity
 
@@ -21,7 +22,12 @@ You need to create a storage account and a container so that the databricks conn
 
 You also need a Synapse Analytics workspace and a dedicated SQL pool to serve as the data warehouse to store the data processed from the coincap.io API. Use these guides to set up your [workspace](https://learn.microsoft.com/en-us/azure/synapse-analytics/get-started-create-workspace) and [dedicated sql pool]([https://learn.microsoft.com/en-us/azure/storage/blobs/blob-containers-portal](https://learn.microsoft.com/en-us/azure/synapse-analytics/get-started-analyze-sql-pool). Remember to save your credentials somewhere, you will need them later to setup your connections in databricks.
 
-### 4. Set up Azure Key Vault 
+### 4. Set up Azure Databricks
+
+Creating a Databricks workspace is easy. You can use this [documentation](https://learn.microsoft.com/en-us/azure/databricks/getting-started/) from Microsoft to setup yours. You will need also need to configure clusters, you can use this [guide](https://learn.microsoft.com/en-us/azure/databricks/clusters/configure) to do this.
+
+
+### 5. Set up Azure Key Vault 
 
 Azure Key Vault is a service provided by Azure that securely stores secrets (private strings like passwords, connection strings etc) and keys. I have used this service in my pipeline, if you do not want to use Key Vault you can simply use the respective secrets directly as strings in databricks. This is link to help setup your [Key Vault](https://medium.com/swlh/a-credential-safe-way-to-connect-and-access-azure-synapse-analytics-in-azure-databricks-1b008839590a). 
 
