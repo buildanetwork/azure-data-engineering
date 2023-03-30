@@ -68,3 +68,56 @@ Go to your Synapse Analytics and follow this path to get your connection string 
 
 `jdbc:sqlserver://{workspacename}.sql.azuresynapse.net:1433;database={dbname};user={userid};password={your_password_here};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.sql.azuresynapse.net;loginTimeout=30;`
 
+## Python script to send data to the Event Hub
+
+You can use this code to stream data from the coincap API to the Event Hub.
+
+```
+import requests
+import json
+import asyncio
+from azure.eventhub import EventData
+from azure.eventhub.aio import EventHubProducerClient
+import datetime
+
+EVENT_HUB_CONNECTION_STR = "<Event Hub Connection String from Earlier>"
+EVENT_HUB_NAME = "<Event Hub Entity you created>"
+
+def get_asset_data():
+    url = "https://api.coincap.io/v2/assets"
+    payload={}
+    headers = {}
+    response = requests.request("GET", url, headers=headers, data=payload)
+    asset_data = json.loads((response.text))
+    assets = []
+    ts = asset_data["timestamp"]
+    for asset in asset_data["data"]:    
+        asset["timestamp"] = ts
+        assets.append(json.dumps(asset))
+    return assets
+
+async def run():
+    # Create a producer client to send messages to the event hub.
+    # Specify a connection string to your event hubs namespace and
+    producer = EventHubProducerClient.from_connection_string(
+        conn_str=EVENT_HUB_CONNECTION_STR, eventhub_name=EVENT_HUB_NAME
+    )
+    async with producer:
+        # Create a batch.
+        event_data_batch = await producer.create_batch()
+        stream_data = get_asset_data()
+        # Add events to the batch.
+        for i in stream_data:
+            event_data_batch.add(EventData(i))
+            print(f"\rCoins sent to EventHub: {stream_data.index(i)+ 1}", end='', flush=True)
+        # Send the batch of events to the event hub.
+        await producer.send_batch(event_data_batch)
+        print("\nData Published at: "+ str(datetime.datetime.utcnow()))
+
+asyncio.run(run())    
+```
+The script should generate the output below
+
+![Screenshot (15)](https://user-images.githubusercontent.com/50084105/228889499-a05b0edd-4297-4dc2-80e4-01bbaec04f95.png)
+
+
