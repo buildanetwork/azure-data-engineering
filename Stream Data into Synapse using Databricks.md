@@ -24,8 +24,7 @@ You also need a Synapse Analytics workspace and a dedicated SQL pool to serve as
 
 ### 4. Set up Azure Databricks
 
-Creating a Databricks workspace is easy. You can use this [documentation](https://learn.microsoft.com/en-us/azure/databricks/getting-started/) from Microsoft to setup yours. You will need also need to configure clusters, you can use this [guide](https://learn.microsoft.com/en-us/azure/databricks/clusters/configure) to do this.
-
+Creating a Databricks workspace is easy. You can use this [documentation](https://learn.microsoft.com/en-us/azure/databricks/getting-started/) from Microsoft to setup yours. You will need also need to configure clusters, you can use this [guide](https://learn.microsoft.com/en-us/azure/databricks/clusters/configure) to set them up. Please use the `12.1 (includes Apache Spark 3.3.1, Scala 2.12)` Databricks Runtime Version.
 
 ### 5. Set up Azure Key Vault 
 
@@ -144,4 +143,67 @@ This script should generate the output below
 
 ![Screenshot (15)](https://user-images.githubusercontent.com/50084105/228889499-a05b0edd-4297-4dc2-80e4-01bbaec04f95.png)
 
+## Using Databricks to Stream Data from the Event Hub
 
+Create a notebook in the Databricks workspace you created. You will need to install a library on the cluster to read data from the Event Hub, you can use the Maven coordinate `com.microsoft.azure:azure-eventhubs-spark_2.12:2.3.18` to do this. You can find a guide online to configure this library if you have issues.
+
+```
+from pyspark.sql.types import *
+import  pyspark.sql.functions as F
+
+conf = {}
+connection_string = dbutils.secrets.get(scope="<Key Vault Scope>",key="<Connection String Event Hub Listener>") 
+# You can use the Event Hub listener string directly
+#connection_string = ""
+conf["eventhubs.connectionString"] = sc._jvm.org.apache.spark.eventhubs.EventHubsUtils.encrypt(connection_string)
+conf['eventhubs.consumerGroup'] = "$Default"
+df = (spark.readStream.format("eventhubs").options(**conf).load())
+
+events_schema = StructType([
+    StructField("id", StringType(), True),
+    StructField("rank", StringType(), True),
+    StructField("symbol", StringType(), True),
+    StructField("name", StringType(), True),
+    StructField("supply", StringType(), True),
+    StructField("maxSupply", StringType(), True),
+    StructField("marketCapUsd", StringType(), True),
+    StructField("volumeUsd24Hr", StringType(), True),
+    StructField("priceUsd", StringType(), True),
+    StructField("changePercent24Hr", StringType(), True),
+    StructField("vwap24Hr", StringType(), True),
+    StructField("explorer", StringType(), True),
+    StructField("timestamp", DoubleType(), True),
+])
+
+decoded_df = df.withColumn("jsonData",F.from_json(F.col("body").cast("string"),events_schema)).select("jsonData.*")
+
+temp_df = decoded_df.withColumn("supply",decoded_df.supply.cast(DoubleType())) \
+    .withColumn("maxSupply",decoded_df.maxSupply.cast(DoubleType())) \
+    .withColumn("rank",decoded_df.rank.cast(LongType())) \
+    .withColumn("marketCapUsd",decoded_df.marketCapUsd.cast(DoubleType())) \
+    .withColumn("volumeUsd24Hr",decoded_df.volumeUsd24Hr.cast(DoubleType())) \
+    .withColumn("priceUsd",decoded_df.priceUsd.cast(DoubleType())) \
+    .withColumn("changePercent24Hr",decoded_df.changePercent24Hr.cast(DoubleType())) \
+    .withColumn("vwap24Hr",decoded_df.vwap24Hr.cast(DoubleType())) \
+    .withColumn("timestamp",decoded_df["timestamp"]/1000)
+
+final_df = temp_df.withColumn('timestamp', (temp_df.timestamp.cast(TimestampType())))
+#display(final_df)
+spark.conf.set(
+      "fs.azure.account.key.<storage account>.dfs.core.windows.net",
+      <Access Key>")
+
+synapse_connection_string = dbutils.secrets.get(scope="<Key Vault Scope>",key="<Synapse Connection String>")  
+# You can use the Synapse string directly
+#synapse_connection_string = ""
+spark.conf.set("spark.sql.parquet.writeLegacyFormat","true")
+
+final_df.writeStream \
+      .format("com.databricks.spark.sqldw") \
+      .option("url", synapse_connection_string) \
+      .option("tempDir", "abfss://<container name>@<storage account>.dfs.core.windows.net/<directory>") \
+      .option("forwardSparkAzureStorageCredentials", "true") \
+      .option("dbTable", "<Destination Table>") \
+      .option("checkpointLocation", "/tmp_checkpoint_location") \
+      .start()
+```
