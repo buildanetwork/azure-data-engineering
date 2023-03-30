@@ -79,7 +79,21 @@ Go to your Synapse Analytics and follow this path to get your connection string 
 You can use this code to stream data from the coincap API to the Event Hub. This script processes the json received from the API and appends the runtime timestamp in epochs to the final json that is sent to the Event Hub. Note: A JSON array is sent to the Event Hub.
 
 ```
-{"id": "bitcoin", "rank": "1", "symbol": "BTC", "name": "Bitcoin", "supply": "19332443.0000000000000000", "maxSupply": "21000000.0000000000000000", "marketCapUsd": "547205357840.2894946660999555", "volumeUsd24Hr": "7843196880.5992743425954912", "priceUsd": "28305.0289009148763385", "changePercent24Hr": "-0.5321226064725184", "vwap24Hr": "28485.3107379122638250", "explorer": "https://blockchain.info/", "timestamp": 1680191532104}
+{
+   "id":"bitcoin",
+   "rank":"1",
+   "symbol":"BTC",
+   "name":"Bitcoin",
+   "supply":"19332443.0000000000000000",
+   "maxSupply":"21000000.0000000000000000",
+   "marketCapUsd":"547205357840.2894946660999555",
+   "volumeUsd24Hr":"7843196880.5992743425954912",
+   "priceUsd":"28305.0289009148763385",
+   "changePercent24Hr":"-0.5321226064725184",
+   "vwap24Hr":"28485.3107379122638250",
+   "explorer":"https://blockchain.info/",
+   "timestamp":1680191532104
+}
 ```
 
 ```
