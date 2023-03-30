@@ -136,7 +136,7 @@ This script should generate the output below
 
 ![image](https://user-images.githubusercontent.com/50084105/228914607-2b871b71-68c4-4bc3-aa8a-5153de93090b.png)
 
-2. Run the script that streams the coincap data to the eventhub. The data for this run was created at 2023-03-30 12:28 UTC.
+2. Run the script that streams the coincap data to the eventhub. The data for this run was created at 2023-03-30 17:15 UTC.
 
 ![Screenshot (17)](https://user-images.githubusercontent.com/50084105/228915203-64759f81-7760-45a8-a44d-c42bcc6da9a7.png)
 
