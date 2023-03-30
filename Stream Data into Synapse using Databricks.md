@@ -27,7 +27,7 @@ Azure Key Vault is a service provided by Azure that securely stores secrets (pri
 
 ### 2. Create a destination table (sink) in the Synapse Dedicated SQL Pool
 
-Run the code below on Azure Synapse Studio, this will create the destination table that will store the data collected and processed from the coincap API.
+Run the SQL code below on Azure Synapse Studio, this will create the destination table that will store the data collected and processed from the coincap API.
 
 ```	
 CREATE TABLE assets.asset_statistics_history_v3
