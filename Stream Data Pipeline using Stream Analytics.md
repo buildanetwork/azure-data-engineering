@@ -129,6 +129,17 @@ This script should generate the output below
 
 ![Screenshot (15)](https://user-images.githubusercontent.com/50084105/228889499-a05b0edd-4297-4dc2-80e4-01bbaec04f95.png)
 
+## Setting up the Event Hub input for the Stream Analytics Job
+
+Go to the Analytics Stream Job you created earlier. Select `Inputs` and click `Add Input > Event Hub`. Enter a input alias and select the subscription and event hub which will store the streamed data. Use the `$Default` consumer group and use the `Connection String` authentication mode. Use the listening policy that was created earlier and keep the serialization format as `JSON`.
+
+![image](https://user-images.githubusercontent.com/50084105/228919656-a5da517e-f97b-4d9d-8e7a-83fe8a540384.png)
+
+## Setting up the Synapse Analytics output for the Stream Analytics Job
+
+Go to the Analytics Stream Job you created earlier. Select `Outputs` and click `Add output > Azure Synapse Analytics`. Enter a output alias and select the subscription and database which will store the processed data. Use the `SQL server authentication` authentication mode and enter your username and password (This was asked during setting up Synapse). Enter the destination table that was created earlier.
+
+![Screenshot (20)](https://user-images.githubusercontent.com/50084105/228918646-61cc8552-cf57-452e-83e2-cca0673c63f4.png)
 
 ## Running the scripts
 
