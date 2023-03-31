@@ -86,7 +86,6 @@ from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
 import datetime as DT
 import os
 
-
 def get_coin_prices(coin_list):
     payload = ""
     headers = {}
@@ -97,9 +96,7 @@ def get_coin_prices(coin_list):
         response = requests.request("GET", url, headers=headers, data=payload)
         rates_response = json.loads(response.text)
         ts = rates_response["timestamp"]
-        #print(type(ts))
         runtime_ts = DT.datetime.utcfromtimestamp(ts/1000).isoformat()
-        #print(runtime_ts)
         for rate in rates_response["data"]:
             rate["timestamp"] = runtime_ts
             coin_rates.append(rate)  
