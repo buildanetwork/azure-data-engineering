@@ -150,10 +150,9 @@ This script should generate the output below
 You should get this notification when publishing is complete.
 ![image](https://user-images.githubusercontent.com/50084105/229035291-e65befd0-fd0f-4007-88f8-54451e09a64d.png)
 
-The trigger will look like that once the changes have been published. The trigger will only run once publishing is completed.
+The trigger will look like this with the status `Started` once the changes have been published. The trigger will only work after publishing is completed, data uploaded to the Data Lake before publishing is complete will not be ingested.
 
 ![image](https://user-images.githubusercontent.com/50084105/229030556-fdf0907a-f86f-4984-90ee-c00801d08f36.png)
-
 
 2. Run the script that uploads the coincap data in a json file to Data Lake Storage. The file was uploaded at 2023-03-31 05:59 UTC (This is 9:50 AM in my timezone).
 ![Screenshot (29)](https://user-images.githubusercontent.com/50084105/229036412-35c2aa08-1ad6-42fa-bee9-a781d455eb58.png)
