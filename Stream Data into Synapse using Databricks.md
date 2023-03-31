@@ -210,7 +210,7 @@ final_df.writeStream \
       .option("checkpointLocation", "/tmp_checkpoint_location") \
       .start()
 ```
-## Running the scripts
+## Running the pipeline
 
 1. Run the code in the Databricks Cluster. You should see the below output when you don't have any errors.
 
