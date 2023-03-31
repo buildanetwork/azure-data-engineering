@@ -152,8 +152,12 @@ The trigger will look like that once the changes have been published. The trigge
 ![image](https://user-images.githubusercontent.com/50084105/229030556-fdf0907a-f86f-4984-90ee-c00801d08f36.png)
 ![image](https://user-images.githubusercontent.com/50084105/229035291-e65befd0-fd0f-4007-88f8-54451e09a64d.png)
 
-2. Run the script that uploads the coincap data in a json file to Data Lake Storage. The file was uploaded at 2023-03-30 12:28 UTC.
+2. Run the script that uploads the coincap data in a json file to Data Lake Storage. The file was uploaded at 2023-03-31 05:59 UTC (This is 9:50 AM in my timezone).
+![Screenshot (29)](https://user-images.githubusercontent.com/50084105/229036412-35c2aa08-1ad6-42fa-bee9-a781d455eb58.png)
 
+Go to `Monitor > Trigger Runs`. You should see a pipeline run.
+![image](https://user-images.githubusercontent.com/50084105/229036221-3efb4dcd-55f0-40c6-acd7-b9fe1010e424.png)
 
-3. After a few minutes the data will be inserted in the Synapse destination table. You can verify this with the runtime column for the latest entries.
+3. After a few minutes the data will be inserted in the Synapse destination table. You can verify this with the runtime_timestamp field for the latest entries. Note: Runtime was inserted with the UTC timezone.
+![image](https://user-images.githubusercontent.com/50084105/229036558-ae8dfe5c-d869-48b9-b255-eca26b99aff0.png)
 
