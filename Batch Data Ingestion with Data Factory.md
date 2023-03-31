@@ -142,6 +142,16 @@ This script should generate the output below
 
 ![Screenshot (29)](https://user-images.githubusercontent.com/50084105/229036412-35c2aa08-1ad6-42fa-bee9-a781d455eb58.png)
 
+## Setting up Linked Services in Azure Data Factory
+
+### Synapse Linked Service
+
+Go to `Azure Data Factory Studio > Manage > Linked Services`. Click `New` and select `Azure Synapse Analytics`
++ Enter a Name
+
+### Data Lake Linked Service
+
+
 ## Running the scripts
 
 1. Enable the trigger in Azure Data Factory. You can do this by going to 'Manage > Triggers'
