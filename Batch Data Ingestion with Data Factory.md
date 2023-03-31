@@ -138,7 +138,7 @@ try:
 except:
     print("Issue with Upload")
 ```
-This script should generate the output below
+This script should generate the output below. Run this script to check if the json files are getting uploaded to the container. Keep a sample file in the directory so that Data Factory can infer the schema later.
 
 ![Screenshot (29)](https://user-images.githubusercontent.com/50084105/229036412-35c2aa08-1ad6-42fa-bee9-a781d455eb58.png)
 
@@ -170,8 +170,18 @@ Go to `Azure Data Factory Studio > Manage > Linked Services`. Click `New` and se
 + Drag the `Copy data` Activity into the pipeline. Select this activity and give it a name under the `General Tab`.
 ![image](https://user-images.githubusercontent.com/50084105/229051343-88970f2c-a90a-461f-9d22-44140d5d50b0.png)
 
- 
+### Setting up the Source
 
++ Go the `Source` tab and click `+ New`
+![image](https://user-images.githubusercontent.com/50084105/229052735-46e0b71d-7387-424a-8143-01eaec007447.png)
++ Select `Azure Data Lake Storage Gen2` and then select the `JSON` format.
++ Select the linked service you had created earlier and specify the path. It will look like this. Over here `cryptodatalake` is my container and `asset-exchange-rates` is the directory where the data gets uploaded by the script.
+![image](https://user-images.githubusercontent.com/50084105/229053575-2684c79c-069a-4f64-8f24-ea0e0633c5c0.png)
++ Select `From connection/store` to import the schema.
+![image](https://user-images.githubusercontent.com/50084105/229054223-b2da7089-7bf2-4725-a40e-031a4b37f669.png)
++ Click `OK`
++ Configure these settings under source. Wildcard path ensures data is only ingested from the desired directory. For this batch pipeline, data is supposed to be uploaded to the container at an hourly frequency. This is why we have configured the filter by last modified between 5 minutes before the runtime to the runtime.
+![image](https://user-images.githubusercontent.com/50084105/229054963-b61c68c1-84da-4e52-84dc-afa8a23820d2.png)
 
 
 ## Running the scripts
