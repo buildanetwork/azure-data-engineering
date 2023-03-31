@@ -155,6 +155,9 @@ The trigger will look like that once the changes have been published. The trigge
 2. Run the script that uploads the coincap data in a json file to Data Lake Storage. The file was uploaded at 2023-03-31 05:59 UTC (This is 9:50 AM in my timezone).
 ![Screenshot (29)](https://user-images.githubusercontent.com/50084105/229036412-35c2aa08-1ad6-42fa-bee9-a781d455eb58.png)
 
+You should be able to see the file in your container
+![image](https://user-images.githubusercontent.com/50084105/229037765-6e8d4495-7c7d-4c84-a3a3-190d9e5b3ec9.png)
+
 Go to `Monitor > Trigger Runs`. You should see a pipeline run.
 ![image](https://user-images.githubusercontent.com/50084105/229036221-3efb4dcd-55f0-40c6-acd7-b9fe1010e424.png)
 
