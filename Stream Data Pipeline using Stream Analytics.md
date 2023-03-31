@@ -180,7 +180,7 @@ function main(ts) {
 ```
 
 
-## Running the scripts
+## Running the pipeline
 
 1. Run the code in the Stream Analytics Job from the overview page of the Job. You should see this screen
 
