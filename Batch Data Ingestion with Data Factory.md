@@ -134,7 +134,7 @@ blob_client = blob_service_client.get_blob_client(container=container_name, blob
 try:
     with open(upload_file_path, "rb") as data:
             blob_client.upload_blob(data)
-            print("\nUploaded"+ file_name)
+            print(f"\nUploaded {file_name} as {str(DT.datetime.utcnow())}")
 except:
     print("Issue with Upload")
 ```
