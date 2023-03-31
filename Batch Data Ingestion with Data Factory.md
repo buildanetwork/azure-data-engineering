@@ -62,7 +62,7 @@ Go to your Storage Account and select `Access Keys` to get your connection strin
 
 ## Python script to send data to the Event Hub
 
-You can use this code to upload data from the coincap API to Azure Data Lake. This script processes the json received from the API and appends the runtime timestamp after converting epochs to the ISO 8601 formatfinal json that is sent to the Event Hub. Note: A JSON array is uploaded to the container.
+You can use this code to upload data from the coincap API to Azure Data Lake. This script processes the json received from the API and appends the runtime timestamp after converting epochs to the ISO 8601 format. Note: A JSON array is uploaded to the container.
 
 ```
 {
