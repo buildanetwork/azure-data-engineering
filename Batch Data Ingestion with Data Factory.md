@@ -162,6 +162,18 @@ Go to `Azure Data Factory Studio > Manage > Linked Services`. Click `New` and se
 + Test the connection to `linked service`.
 + If the test connection works, click `Create`.
 
+## Creating the Data Pipeline in Azure Data Factory
+
++ Go to `Azure Data Factory Studio > Author`. Create a pipeline `+ > Pipeline > Pipeline`.
+![image](https://user-images.githubusercontent.com/50084105/229050487-23a1ee9f-642f-4de3-80ca-f30d89fd35a8.png)
+ 
++ Drag the `Copy data` Activity into the pipeline. Select this activity and give it a name under the `General Tab`.
+![image](https://user-images.githubusercontent.com/50084105/229051343-88970f2c-a90a-461f-9d22-44140d5d50b0.png)
+
+ 
+
+
+
 ## Running the scripts
 
 1. Enable the trigger in Azure Data Factory. You can do this by going to 'Manage > Triggers'
