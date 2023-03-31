@@ -170,7 +170,7 @@ Go to `Azure Data Factory Studio > Manage > Linked Services`. Click `New` and se
 + Drag the `Copy data` Activity into the pipeline. Select this activity and give it a name under the `General Tab`.
 ![image](https://user-images.githubusercontent.com/50084105/229051343-88970f2c-a90a-461f-9d22-44140d5d50b0.png)
 
-### Setting up the Source
+### Configure the Source
 
 + Go the `Source` tab and click `+ New`
 ![image](https://user-images.githubusercontent.com/50084105/229052735-46e0b71d-7387-424a-8143-01eaec007447.png)
@@ -183,10 +183,46 @@ Go to `Azure Data Factory Studio > Manage > Linked Services`. Click `New` and se
 + Configure these settings under source. Wildcard path ensures data is only ingested from the desired directory. For this batch pipeline, data is supposed to be uploaded to the container at an hourly frequency. This is why we have configured the filter by last modified between 5 minutes before the runtime to the runtime.
 ![image](https://user-images.githubusercontent.com/50084105/229054963-b61c68c1-84da-4e52-84dc-afa8a23820d2.png)
 
+### Configure the Sink
+
++ Go the `Sink` tab and click `+ New`
++ Select `Azure Synapse Analytics` and select the linked service you created earlier.
++ Select the table name.
++ Import the schema from the connection/store. Click OK.
++ Select these options in the `Sink` tab.
+![image](https://user-images.githubusercontent.com/50084105/229068101-80845f63-3888-4a6a-bcc0-c320d4eb30dd.png)
+
+### Configure the Mapping
+
++ Go the `Mapping` tab and click `Import schemas`
++ Configure the mapping according to the screenshot below
+![image](https://user-images.githubusercontent.com/50084105/229068875-20df2537-6448-411d-80cf-9c09862fe434.png)
+
+### Configure the Settings
+
++ Go the `Settings` tab and configure these settings. Note: The copy activity will need a directory to store the data and do it's respective tasks. You will need to create another directory for the copy activity to stage the data. My directory is called `asset-exchange-rates-stg`.
++ Click `Validate all` and then `Publish all` once validation is complete.
+
+![image](https://user-images.githubusercontent.com/50084105/229068961-835cf19a-4820-4031-a694-2cebd54c59e6.png)
+
+### Create a trigger
+
++ Go to `Trigger > New/Edit`
+
+![image](https://user-images.githubusercontent.com/50084105/229070480-cc7bd995-949b-4311-89d9-0d39bdd583aa.png)
+
++ Select `+ New` as `Choose trigger`
++ Configure these settings and click `Continue`.
+![Screenshot (32)](https://user-images.githubusercontent.com/50084105/229073143-391adad4-aa32-45a6-8312-28fd59fd3253.png)
++ If you have json files in the container already you should get a data preview like this.
+![image](https://user-images.githubusercontent.com/50084105/229073495-6a843d44-5914-4bbd-b101-1e3529529608.png)
++ Click `Continue` and then click `OK`.
++ Click `Publish All`
+
 
 ## Running the scripts
 
-1. Enable the trigger in Azure Data Factory. You can do this by going to 'Manage > Triggers'
+1. Enable the trigger in Azure Data Factory. You can do this by going to 'Manage > Triggers'. If your trigger already has the status `Started`, you can go to step 2.
 ![Screenshot (28)](https://user-images.githubusercontent.com/50084105/229034613-019be370-769f-4c3a-8bf9-af0bba181932.png)
 
 You should get this notification when publishing is complete.
