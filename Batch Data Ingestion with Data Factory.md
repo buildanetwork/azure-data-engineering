@@ -147,10 +147,20 @@ This script should generate the output below
 ### Synapse Linked Service
 
 Go to `Azure Data Factory Studio > Manage > Linked Services`. Click `New` and select `Azure Synapse Analytics`
-+ Enter a Name
++ Enter a Name.
++ Select `From Azure subscription` as the Account selection method. Select your subscription, server name, database name and SQL pool.
++ Select `SQL authentication` as the Authentication type.
++ Enter your username and password which was used to create your Synapse workspace.
++ Test the connection.
++ If the test connection works, click `Create`.
 
 ### Data Lake Linked Service
 
+Go to `Azure Data Factory Studio > Manage > Linked Services`. Click `New` and select `Azure Data Lake Storage Gen2`
++ Enter a Name.
++ Select `From Azure subscription` as the Account selection method. Select your subscription and Storage account name.
++ Test the connection to `linked service`.
++ If the test connection works, click `Create`.
 
 ## Running the scripts
 
