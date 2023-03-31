@@ -214,7 +214,7 @@ Go to `Azure Data Factory Studio > Manage > Linked Services`. Click `New` and se
 + Click `Publish All`
 
 
-## Running the scripts
+## Running the pipeline
 
 1. Enable the trigger in Azure Data Factory. You can do this by going to 'Manage > Triggers'. If your trigger already has the status `Started`, you can go to step 2.
 ![Screenshot (28)](https://user-images.githubusercontent.com/50084105/229034613-019be370-769f-4c3a-8bf9-af0bba181932.png)
