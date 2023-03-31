@@ -171,7 +171,7 @@ Go to `Azure Data Factory Studio > Manage > Linked Services`. Click `New` and se
 + Select `From connection/store` to import the schema.
 ![image](https://user-images.githubusercontent.com/50084105/229054223-b2da7089-7bf2-4725-a40e-031a4b37f669.png)
 + Click `OK`
-+ Configure these settings under source. Wildcard path ensures data is only ingested from the desired directory. For this batch pipeline, data is supposed to be uploaded to the container at an hourly frequency. This is why we have configured the filter by last modified between 5 minutes before the runtime to the runtime.
++ Configure these settings under source. Wildcard path ensures data is only ingested from the desired directory. For this batch pipeline, data is supposed to be uploaded to the container at an hourly frequency. This is why I configured the `Filter by last modified` settings between 5 minutes before the runtime to the runtime.
 ![image](https://user-images.githubusercontent.com/50084105/229054963-b61c68c1-84da-4e52-84dc-afa8a23820d2.png)
 
 ### Configure the Sink
