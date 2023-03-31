@@ -140,7 +140,7 @@ except:
 ```
 This script should generate the output below
 
-
+![Screenshot (29)](https://user-images.githubusercontent.com/50084105/229036412-35c2aa08-1ad6-42fa-bee9-a781d455eb58.png)
 
 ## Running the scripts
 
