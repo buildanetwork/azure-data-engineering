@@ -150,7 +150,7 @@ This script should generate the output below
 The trigger will look like that once the changes have been published. The trigger will only run once publishing is completed.
 
 ![image](https://user-images.githubusercontent.com/50084105/229030556-fdf0907a-f86f-4984-90ee-c00801d08f36.png)
-![image](https://user-images.githubusercontent.com/50084105/229035187-3451fd8e-7246-4e02-9cf3-62406deb8556.png)
+![image](https://user-images.githubusercontent.com/50084105/229035291-e65befd0-fd0f-4007-88f8-54451e09a64d.png)
 
 2. Run the script that uploads the coincap data in a json file to Data Lake Storage. The file was uploaded at 2023-03-30 12:28 UTC.
 
