@@ -1,5 +1,5 @@
 # Azure Data Engineering
-This repo has Data Engineering projects that develop streaming and batch data pipelines using Azure services like Azure Databricks, Azure Event Hubs, Azure Data Factory and Azure Synapse Analytics
+This repo has data engineering projects that develop streaming and batch data pipelines using Azure services like Azure Databricks, Azure Event Hubs, Azure Data Factory and Azure Synapse Analytics
 
 1. [Streaming Data from an API to Synapse Analytics using Databricks and Event Hubs](https://github.com/buildanetwork/azure-data-engineering/blob/main/Stream%20Data%20into%20Synapse%20using%20Databricks.md)
 2. [Streaming Data from an API to Synapse Analytics using Stream Analytics and Event Hubs](https://github.com/buildanetwork/azure-data-engineering/blob/main/Stream%20Data%20Pipeline%20using%20Stream%20Analytics.md)
