@@ -204,8 +204,11 @@ Go to `Azure Data Factory Studio > Manage > Linked Services`. Click `New` and se
 
 + Select `+ New` as `Choose trigger`
 + Configure these settings and click `Continue`.
+
 ![Screenshot (32)](https://user-images.githubusercontent.com/50084105/229073143-391adad4-aa32-45a6-8312-28fd59fd3253.png)
+
 + If you have json files in the container already you should get a data preview like this.
+
 ![image](https://user-images.githubusercontent.com/50084105/229073495-6a843d44-5914-4bbd-b101-1e3529529608.png)
 + Click `Continue` and then click `OK`.
 + Click `Publish All`
