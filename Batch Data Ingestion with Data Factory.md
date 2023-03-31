@@ -159,5 +159,4 @@ Go to `Monitor > Trigger Runs`. You should see a pipeline run.
 ![image](https://user-images.githubusercontent.com/50084105/229036221-3efb4dcd-55f0-40c6-acd7-b9fe1010e424.png)
 
 3. After a few minutes the data will be inserted in the Synapse destination table. You can verify this with the runtime_timestamp field for the latest entries. Note: Runtime was inserted with the UTC timezone.
-![image](https://user-images.githubusercontent.com/50084105/229036558-ae8dfe5c-d869-48b9-b255-eca26b99aff0.png)
-
+![image](https://user-images.githubusercontent.com/50084105/229036886-bea3a2f5-3410-4e7f-a26e-bccb9a1e5dea.png)
