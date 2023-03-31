@@ -145,10 +145,9 @@ This script should generate the output below
 ## Running the scripts
 
 1. Enable the trigger in Azure Data Factory. You can do this by going to 'Manage > Triggers'
+![Screenshot (28)](https://user-images.githubusercontent.com/50084105/229034613-019be370-769f-4c3a-8bf9-af0bba181932.png)
 
-![image](https://user-images.githubusercontent.com/50084105/229031703-5bd78a6f-1008-42a4-bce9-ba1e927408f4.png)
-
-The trigger will look like that once it has started.
+The trigger will look like that once the changes have been published.
 ![image](https://user-images.githubusercontent.com/50084105/229030556-fdf0907a-f86f-4984-90ee-c00801d08f36.png)
 
 
